@@ -1,0 +1,65 @@
+﻿@model AplicatieSalariati.Models.ConcediiModel
+@{
+    ViewBag.Title = "Leave";
+}
+<h2>Adauga Concediu</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>SalariatModel</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CNP)
+        <div class="form-group">
+            @Html.LabelFor(model => model.dataStart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.dataStart, new { htmlAttributes = new { @class = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.dataStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DataFinal, new { htmlAttributes = new { @class = "datepicker " } })
+                @Html.ValidationMessageFor(model => model.DataFinal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a type="button" value="Cancel" href="@Url.Action("Index", "Angajat", new { type = "Edit"})" class="btn btn-default">Cancel</a>
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+}
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-1:+2",
+                monthRange: "-1:+12"
+            });
+        });
+
+    </script>
+}
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
